@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+	<!-- 대분류 뽑아오기 -->
+	<select id="getCommonGroupCode" resultType="com.mvc.dao.CommonCodeDTO">
+		SELECT group_cd, cd, cdnm, use_yn, sn
+		FROM CMMN_CD
+		WHERE group_cd = 'ad01';
+	</select>
+
+	<!-- 선택한 대분류가 변하는 것을 체크하여 중분류를 가져간다. -->
+	<select id="selectChangeCheck" parameterType="String" resultType="com.mvc.dao.CommonCodeDTO">
+		SELECT group_cd, cd, cdnm, use_yn, sn
+		FROM CMMN_CD
+		WHERE group_cd = #{groupCodeCD}
+	</select>
+
+</mapper>
